@@ -1,9 +1,10 @@
 package fr.laerce.cinema.model;
 
 import javax.persistence.*;
-import javax.xml.soap.Text;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="films")
@@ -14,6 +15,8 @@ public class Film {
     private String image_path;
     private String summary;
     private Personne film_director;
+    private Set<Role> posts;
+    private List<Genre> genreFilm = new ArrayList<Genre> ();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +27,15 @@ public class Film {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @OneToMany(mappedBy = "film")
+    public Set<Role> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<Role> posts) {
+        this.posts = posts;
     }
 
     @Basic
@@ -77,6 +89,10 @@ public class Film {
         this.film_director = film_director;
     }
 
+    @ManyToMany(mappedBy="listFilm")
+    public List<Genre> getGenreFilm() {return genreFilm;}
+
+    public void setGenreFilm(List<Genre> genreFilm) {this.genreFilm = genreFilm;}
 
     @Override
     public boolean equals(Object o) {

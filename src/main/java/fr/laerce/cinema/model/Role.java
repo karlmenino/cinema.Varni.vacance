@@ -1,51 +1,90 @@
-package fr.laerce.cinema.model;
+package fr.laerce.cinema.model;//package fr.laerce.cinema.model;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
-//@Entity
-//@Table(name="play")
+@Entity(name="Role")
+@Table(name="play")
 public class Role {
-        private long person_id;
-        private long film_id;
+        @EmbeddedId
+        private PlayPk id;
+        @ManyToOne
+        @MapsId("personPlay")
+        private Personne person;
+        @ManyToOne
+        @MapsId("filmPlay")
+        private Film film;
+        @Column(name = "rank")
         private Integer rank;
+        @Column(name = "name")
         private String name;
 
-    @Id
-    @Column(name = "person_id", nullable = false)
-    public long getPerson_id() {return person_id; }
-    public void setPerson_id(long person_id) {this.person_id = person_id;}
+    public PlayPk getId() {
+        return id;
+    }
 
-    @Id
-    @Column(name = "film_id", nullable = false)
-    public long getFilm_id() {return film_id;}
-    public void setFilm_id(long film_id) {this.film_id = film_id;}
+    public void setId(PlayPk id) {
+        this.id = id;
+    }
 
-    @Basic
-    @Column(name = "rank", nullable = false)
-    public Integer getRank() {return rank;}
-    public void setRank(Integer rank) {this.rank = rank; }
+    public Personne getperson() {
+        return person;
+    }
 
-    @Basic
-    @Column(name = "nome", nullable = false, length = 90)
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    public void setperson(Personne person) {
+        this.person = person;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film filmRole) {
+        this.film = filmRole;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public void setRank(Integer rank) {
+        this.rank = rank;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Role() {
+    }
+
+    public Role(PlayPk id, Personne person, Film film) {
+        this.id = new PlayPk (person.getId (),film.getId ());
+        this.person = person;
+        this.film = film;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Role)) return false;
         Role role = (Role) o;
-        return getPerson_id () == role.getPerson_id () &&
-                getFilm_id () == role.getFilm_id () &&
-                Objects.equals (getRank (), role.getRank ()) &&
-                Objects.equals (getName (), role.getName ());
+        return Objects.equals (id, role.id) &&
+                Objects.equals (person, role.person) &&
+                Objects.equals (film, role.film) &&
+                Objects.equals (rank, role.rank) &&
+                Objects.equals (name, role.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash (getPerson_id (), getFilm_id (), getRank (), getName ());
+        return Objects.hash (id, person, film, rank, name);
     }
 }
 

@@ -39,16 +39,16 @@ public class MainController {
     public String main(Model M){
         //on ajoute a l'objet model la clef nom et karl
         M.addAttribute ("nom","karl" );
-        M.addAttribute ("films",filmDao.getAll ());
+        M.addAttribute ("films",filmDao.findAll ());
         //on return la chaine string index de façon à ouvrir index.html
         return "index";
     }
 
     @GetMapping("/film/{id}")
     //on recupere id grace à pathvariable
-    public String detail(Model m, @PathVariable("id") String id){
-        long idFilm = Long.parseLong (id);
-        m.addAttribute ("film",filmDao.getById (idFilm));
+    public String detail(Model m, @PathVariable("id") Long id){
+        m.addAttribute ("film",filmDao.findById (id).get ());
+        m.addAttribute ("role", filmDao.findById (id).get ().getPosts ());
         return"detail";
     }
 
@@ -97,6 +97,6 @@ public class MainController {
     //on recupere id grace à pathvariable
     public String acteur(Model m, @PathVariable("id") String id){
         //on envoie a acteur la personne concernée grace a la methode getbyaf et id qui est le nom de l'image
-        m.addAttribute ("actor", personsDao.getByAf(id));
+        m.addAttribute ("actor", personsDao.findByPhotoPath (id));
         return"acteur";}
 }

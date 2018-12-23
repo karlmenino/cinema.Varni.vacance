@@ -1,19 +1,28 @@
 package fr.laerce.cinema.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NaturalIdCache;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import  java.time.*;
 import java.util.List;
 
 //attention cette classe est un bean persistant(nom de classe = nom de table)
 @Entity
 @Table(name="persons")
+
 public class Personne {
     private long id;
     private String nom;
     private String prenom;
-    private Integer naissance;
+    private LocalDate naissance;
     private String photoPath;
     private List<Film> listeFilms;
+    private List<Role> posts;
 
+    public Personne() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +35,14 @@ public class Personne {
         this.id = id;
     }
 
+    @OneToMany(mappedBy = "person")
+    public List<Role> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Role> posts) {
+        this.posts = posts;
+    }
     @Basic
     @Column(name = "surname", nullable = false, length = 60)
     public String getNom() {
@@ -47,12 +64,12 @@ public class Personne {
     }
 
     @Basic
-    @Column(name = "birth_year", nullable = true)
-    public Integer getNaissance() {
+    @Column(name = "birthday", nullable = true)
+    public LocalDate getNaissance() {
         return naissance;
     }
 
-    public void setNaissance(Integer birthYear) {
+    public void setNaissance(LocalDate birthYear) {
         this.naissance = birthYear;
     }
 

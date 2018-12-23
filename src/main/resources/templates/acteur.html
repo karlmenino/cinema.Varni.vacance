@@ -4,17 +4,6 @@
 </head>
 <body>
 <div th:replace="fragment/header.html::nav"></div>
-<!--//////////////////////////////////////////////////////////////////////////-->
-<!--je copie/colle ce que l'on a fait avec detail et j'adapte pour acteur-->
-<!--voire MainController pour voire l'import de actor -->
-<!--<h1 th:text="${actor.getNom()}">nom</h1>-->
-<!--<h2><span th:text="${actor.getPrenom()}">prenom</span></h2>-->
-<!--<h2>née en <span th:text="${actor.getNaissance()}">naissance</span></h2>-->
-<!--<img th:src="'/image/'+${actor.getPhotoPath()}"height="300" width="300">-->
-<!--&lt;!&ndash;<ul>&ndash;&gt;-->
-    <!--<li th:each="role:${film.getRole()}"><img th:src="'/image/'+${actor.getPhotoPath()}"height="75" width="75"><a th:text="${role.toString()}"th:href="@{'/acteur/'+${role.getPersonne().getPhotoPath()}}"></a></li>-->
-<!--</ul>-->
-<!--/////////////////////////////////////////////////////////////////////////////////////-->
 <div class="row">
     <div class="col-md-4">
         <img alt="Bootstrap Image Preview" th:src="'/image/'+${actor.getPhotoPath()}" height="300" width="300" />
@@ -31,27 +20,30 @@
             naissance
         </p>
     </div>
-    <!--<div th:each="jeu:${actor.getRole()}" class="row">-->
-        <!--<div class="col-md-4">-->
-            <!--<img alt="Bootstrap Image Preview" th:src="'/affiche/'+${jeu.film.affiche}" height="150" width="150" />-->
-        <!--</div>-->
-        <!--<div class="col-md-6">-->
-            <!--<h2  th:text="'nom : '+${jeu.film.titre}">-->
-                <!--heading-->
-            <!--</h2>-->
-            <!--<p th:text="'A jouer le '+${jeu.place}+'er role : '+${jeu.nom}">-->
-                <!--nom du role-->
-            <!--</p>-->
-            <!--<h3>-->
-                <!--Résumé :-->
-            <!--</h3>-->
-            <!--<p th:text="${jeu.film.resume}">-->
-                <!--prenom de l'acteur-->
-            <!--</p>-->
-            <!--<p>-->
-                <!--<a class="btn" th:href="@{'/film/'+${jeu.film.id}}">View details »</a>-->
-            <!--</p>-->
-        <!--</div>-->
+    <div th:each="jeu:${actor.getPosts()}" class="row">
+        <div class="col-md-4">
+            <img alt="Bootstrap Image Preview" th:src="'/affiche/'+${jeu.film.image_path}" height="150" width="150" />
+        </div>
+        <div class="col-md-6">
+            <h2  th:text="'nom : '+${jeu.film.title}">
+                heading
+            </h2>
+            <p th:text="'A jouer le '+${jeu.rank}+'er role : '+${jeu.name}">
+                nom du role
+            </p>
+            <h3>
+                Résumé :
+            </h3>
+            <p th:text="${jeu.film.summary}">
+                prenom de l'acteur
+            </p>
+            <div th:each="genre:${jeu.film.getGenreFilm()}">
+                <p th:text="${genre.name}"> genre</p>
+            </div>
+            <p>
+                <a class="btn" th:href="@{'/film/'+${jeu.film.id}}">View details »</a>
+            </p>
+        </div>
     </div>
 </div>
 <div th:replace="fragment/footer.html::footer"></div>

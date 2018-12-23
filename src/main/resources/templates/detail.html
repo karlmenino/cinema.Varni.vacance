@@ -4,17 +4,6 @@
 </head>
 <body>
 <div th:replace="fragment/header.html::nav"></div>
-<!--///////////////////////////////////////////////////////////////////////////////////////////-->
-<!--j'affiche le titre,la notation et l'affiche du film grace a l'objet film que j'ai envoyer dans maincontroller-->
-<!--<h1 th:text="${film.titre}">titre du film</h1>-->
-<!--<h2>Note : <span th:text="${film.getNotation()}">4.5</span></h2>-->
-<!--<h2>Nom : <span th:text="${film.getAffiche()}">fichier affiche</span></h2>-->
-<!--&lt;!&ndash;Dans Maincontroller j'ai mapper /affiche/* une fonctionnalité qui affiche les images &ndash;&gt;-->
-<!--<img th:src="'/affiche/'+${film.getAffiche()}"height="300" width="300">-->
-<!--<ul>-->
-    <!--<li th:each="role:${film.getRole()}"><img th:src="'/image/'+${role.getPersonne().getPhotoPath()}"height="75" width="75"><a th:text="${role.toString()}"th:href="@{'/acteur/'+${role.getPersonne().getPhotoPath()}}"></a></li>-->
-<!--</ul>-->
-<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
@@ -27,33 +16,35 @@
             <p th:text="${film.summary}">
                resumer du film
             </p>
+            <p th:each="genre:${film.getGenreFilm()}" th:text="${genre.name}">
+            </p>
             <p th:text="'note ='+${film.rating}">
               note du film
             </p>
         </div>
     </div>
-    <!--<div th:each="role:${film}" class="row">-->
-        <!--<div class="col-md-4">-->
-            <!--<img alt="Bootstrap Image Preview" th:src="'/image/'+${role.getPersonne().getPhotoPath()}" height="150" width="150" />-->
-        <!--</div>-->
-        <!--<div class="col-md-6">-->
-            <!--<h2 th:text="${role.place}+'er role : '+${role.nom}">-->
-                <!--Heading-->
-            <!--</h2>-->
-            <!--<p th:text="'nom : '+${role.personne.nom}">-->
-               <!--nom de l'acteur-->
-            <!--</p>-->
-            <!--<p th:text="'prenom : '+${role.personne.prenom}">-->
-                <!--prenom de l'acteur-->
-            <!--</p>-->
-            <!--<p th:text="'date de naissance : '+${role.personne.naissance}">-->
-                <!--prenom de l'acteur-->
-            <!--</p>-->
-            <!--<p>-->
-                <!--<a class="btn" th:href="@{'/acteur/'+${role.getPersonne().getPhotoPath()}}">View details »</a>-->
-            <!--</p>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div th:each="test:${role}" class="row">
+        <div class="col-md-4">
+            <img alt="Bootstrap Image Preview" th:src="'/image/'+${test.getperson().photoPath}" height="150" width="150" />
+        </div>
+        <div class="col-md-6">
+            <h2 th:text="${test.getRank()}+'er role : '+${test.getName()}">
+                Heading
+            </h2>
+            <p th:text="'nom : '+${test.getperson().nom}">
+               nom de l'acteur
+            </p>
+            <p th:text="'prenom : '+${test.getperson().prenom}">
+                prenom de l'acteur
+            </p>
+            <p th:text="'date de naissance : '+${test.getperson().naissance}">
+                prenom de l'acteur
+            </p>
+            <p>
+                <a class="btn" th:href="@{'/acteur/'+${test.getperson().getPhotoPath()}}">View details »</a>
+            </p>
+        </div>
+    </div>
 </div>
 <div th:replace="fragment/footer.html::footer"></div>
 </body>
