@@ -4,8 +4,6 @@
 </head>
 <body>
 <div th:replace="fragment/header.html::nav"></div>
-<body>
-<div th:replace="fragment/header.html::nav"></div>
 <form action="#" th:action="@{/person/add}" th:object="${person}" enctype="multipart/form-data" method="post">
     <input type="hidden" th:field="*{id}"/>
     <input type="hidden" th:field="*{photoPath}"/>
@@ -13,7 +11,7 @@
     <p>Nom : <input type="text" th:field="*{prenom}"/></p>
     <p>Annee de naissance : <input type="text" th:field="*{naissance}"/></p>
 
-    <p>Photo : <input type="file" name="photo"/> <span th:text="*{photoPath}">Fichier photo</span></p>
+    <!--<p>Photo : <input type="file" name="photo"/> <span th:text="*{photoPath}">Fichier photo</span></p>-->
 
     <input type="submit" value="Valider" />
 </form>

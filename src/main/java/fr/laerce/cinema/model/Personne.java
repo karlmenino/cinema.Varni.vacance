@@ -44,7 +44,7 @@ public class Personne {
         this.posts = posts;
     }
     @Basic
-    @Column(name = "surname", nullable = false, length = 60)
+    @Column(name = "surname", length = 60)
     public String getNom() {
         return nom;
     }

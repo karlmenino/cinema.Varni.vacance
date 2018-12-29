@@ -66,6 +66,11 @@ public class PersonController {
         personneDao.save(person);
         return "redirect:/person/list";
     }
+    @GetMapping("/suprimer")
+    public String supacteur(@ModelAttribute("id")Long id) {
+        personneDao.deleteById (id);
+        return "redirect:/person/list/";
+    }
     @Value( "${url2}" )
     private String url2;
     @GetMapping("/image/{id}")

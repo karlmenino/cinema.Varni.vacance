@@ -5,12 +5,6 @@
 </head>
 <body>
 <div th:replace="fragment/header.html::nav"></div>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div th:replace="fragment/header.html::nav"></div>
 <form action="#" th:action="@{/film/add}" th:object="${film}" enctype="multipart/form-data" method="post">
     <input type="hidden" th:field="*{id}"/>
     <input type="hidden" th:field="*{image_path}"/>
@@ -23,4 +17,6 @@
 </form>
 <div th:replace="fragment/footer.html::footer"></div>
 </body>
+
 </html>
+

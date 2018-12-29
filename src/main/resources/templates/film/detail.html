@@ -7,9 +7,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
-            <img alt="Bootstrap Image Preview" th:src="'/affiche/'+${film.getImage_path()}"height="300" width="300" />
+            <img alt="Bootstrap Image Preview" th:src="'/film/affiche/'+${film.getImage_path()}"height="300" width="300" />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h2 th:text="${film.title}">
                 Heading
             </h2>
@@ -22,10 +22,14 @@
                 note du film
             </p>
         </div>
+        <div class="col-md-4">
+            <a th:href="'/film/mod/'+${film.id}" >edit</a>
+            <a th:href="'/delete/'+${film.id}"  onClick="javascript:return confirm('Voulez-vous vraiment supprimer cet élément ?')">delete</a></td>
+        </div>
     </div>
     <div th:each="test:${role}" class="row">
         <div class="col-md-4">
-            <img alt="Bootstrap Image Preview" th:src="'/image/'+${test.getperson().photoPath}" height="150" width="150" />
+            <img alt="Bootstrap Image Preview" th:src="'/person/image/'+${test.getperson().photoPath}" height="150" width="150" />
         </div>
         <div class="col-md-6">
             <h2 th:text="${test.getRank()}+'er role : '+${test.getName()}">

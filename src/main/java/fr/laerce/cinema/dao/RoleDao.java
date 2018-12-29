@@ -10,6 +10,4 @@ import org.springframework.stereotype.Component;
 @Component
 
 public interface RoleDao extends CrudRepository<Role, PlayPk> {
-
-
 }
