@@ -8,15 +8,26 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div th:each="jilm:${films}" class="col-md-4">
+        <div  class="col-md-12">
+
+            <div th:each="jilm:${films}" class="row">
+                <div class="col-md-4">
+                <img alt="Bootstrap Image Preview" th:src="'/film/affiche/'+${jilm.image_path}" height="300" width="300" />
+            </div>
+                <div class="col-md-4">
                     <h2 th:text="${jilm.getTitle()}">
                         Heading
                     </h2>
                     <p th:text="${jilm.summary}">
                         Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
                     </p>
+                    <p>
+                        <a class="btn" th:href="@{'/film/'+${jilm.id}}">View details »</a>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <a th:href="'/film/mod/'+${jilm.id}" >edit</a>
+                    <a th:href="'/delete/'+${jilm.id}"  onClick="javascript:return confirm('Voulez-vous vraiment supprimer cet élément ?')">delete</a></td>
                 </div>
             </div>
         </div>

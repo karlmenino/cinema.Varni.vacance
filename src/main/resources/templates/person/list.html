@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/header.html::header">
+</head>
+<body>
+<div th:replace="fragment/header.html::nav"></div>
+<div th:each="personne:${persons}" class="row">
+    <div class="col-md-4">
+        <img alt="Bootstrap Image Preview" th:src="'/person/image/'+${personne.photoPath}" height="300" width="300" />
+    </div>
+    <div class="col-md-4">
+        <h2 th:text="${personne.nom}">
+            Heading
+        </h2>
+        </p>
+        <p th:text="'prenom : '+${personne.prenom}">
+            prenom de l'acteur
+        </p>
+        <p th:text="'date de naissance : '+${personne.naissance}">
+            naissance
+        </p>
+        <p>
+            <a class="btn" th:href="@{'/person/detail/'+${personne.id}}">View details »</a>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <a th:href="'/person/mod/'+${personne.id}" >edit</a>
+        <a th:href="'/delete/'+${personne.id}"  onClick="javascript:return confirm('Voulez-vous vraiment supprimer cet élément ?')">delete</a></td>
+    </div>
+</div>
+</div>
+<div th:replace="fragment/footer.html::footer"></div>
+</body>
+</html>

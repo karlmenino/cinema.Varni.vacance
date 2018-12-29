@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+
 
 @Entity
 @Table(name="films")
@@ -15,7 +15,7 @@ public class Film {
     private String image_path;
     private String summary;
     private Personne film_director;
-    private Set<Role> posts;
+    private List<Role> posts;
     private List<Genre> genreFilm = new ArrayList<Genre> ();
 
     @Id
@@ -30,11 +30,11 @@ public class Film {
     }
 
     @OneToMany(mappedBy = "film")
-    public Set<Role> getPosts() {
+    public List<Role> getPosts() {
         return posts;
     }
 
-    public void setPosts(Set<Role> posts) {
+    public void setPosts(List<Role> posts) {
         this.posts = posts;
     }
 

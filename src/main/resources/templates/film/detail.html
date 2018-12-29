@@ -14,12 +14,12 @@
                 Heading
             </h2>
             <p th:text="${film.summary}">
-               resumer du film
+                resumer du film
             </p>
             <p th:each="genre:${film.getGenreFilm()}" th:text="${genre.name}">
             </p>
             <p th:text="'note ='+${film.rating}">
-              note du film
+                note du film
             </p>
         </div>
     </div>
@@ -32,7 +32,7 @@
                 Heading
             </h2>
             <p th:text="'nom : '+${test.getperson().nom}">
-               nom de l'acteur
+                nom de l'acteur
             </p>
             <p th:text="'prenom : '+${test.getperson().prenom}">
                 prenom de l'acteur

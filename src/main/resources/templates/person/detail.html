@@ -6,21 +6,21 @@
 <div th:replace="fragment/header.html::nav"></div>
 <div class="row">
     <div class="col-md-4">
-        <img alt="Bootstrap Image Preview" th:src="'/image/'+${actor.getPhotoPath()}" height="300" width="300" />
+        <img alt="Bootstrap Image Preview" th:src="'/image/'+${person.photoPath}" height="300" width="300" />
     </div>
     <div class="col-md-6">
-        <h2 th:text="${actor.nom}">
+        <h2 th:text="${person.nom}">
             Heading
         </h2>
         </p>
-        <p th:text="'prenom : '+${actor.prenom}">
+        <p th:text="'prenom : '+${person.prenom}">
             prenom de l'acteur
         </p>
-        <p th:text="'date de naissance : '+${actor.naissance}">
+        <p th:text="'date de naissance : '+${person.naissance}">
             naissance
         </p>
     </div>
-    <div th:each="jeu:${actor.getPosts()}" class="row">
+    <div th:each="jeu:${person.getPosts()}" class="row">
         <div class="col-md-4">
             <img alt="Bootstrap Image Preview" th:src="'/affiche/'+${jeu.film.image_path}" height="150" width="150" />
         </div>
@@ -41,7 +41,7 @@
                 <p th:text="${genre.name}"> genre</p>
             </div>
             <p>
-                <a class="btn" th:href="@{'/film/'+${jeu.film.id}}">View details »</a>
+                <a class="btn" th:href="@{'/film/detail/'+${jeu.film.id}}">View details »</a>
             </p>
         </div>
     </div>
